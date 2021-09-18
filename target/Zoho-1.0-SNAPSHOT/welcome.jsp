@@ -13,7 +13,7 @@
 </head>
 <body>
     <h1 style="color:tomato;">
-    <%= "Welcome " + request.getAttribute("firstname") + " " + request.getAttribute("lastname") %>
+    <%= "Welcome " + request.getAttribute("firstName") + " " + request.getAttribute("lastName") %>
     </h1>
 </body>
 </html>

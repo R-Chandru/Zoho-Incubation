@@ -10,8 +10,8 @@
     <h3>Enter Details</h3>
 
     <form action="details" class="adjust">
-        First name: <input type="text" name="fname"><br><br>
-        Last name: <input type="text" name="lname"><br><br>
+        First name: <input type="text" name="firstName"><br><br>
+        Last name: <input type="text" name="lastName"><br><br>
         <input type="submit" value="Submit">
     </form>
 <br/>

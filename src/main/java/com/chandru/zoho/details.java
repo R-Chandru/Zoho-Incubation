@@ -10,11 +10,11 @@ import java.io.IOException;
 public class details extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String firstName = request.getParameter("fname");
-        String lastName = request.getParameter("lname");
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
 
-        request.setAttribute("firstname", firstName);
-        request.setAttribute("lastname", lastName);
+        request.setAttribute("firstName", firstName);
+        request.setAttribute("lastName", lastName);
 
         try {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("welcome.jsp");
