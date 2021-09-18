@@ -1,0 +1,15 @@
+body {
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    min-height:100vh;
+}
+
+.adjust {
+    margin-top:10px;
+}
+
+.detailsStyle {
+    color: tomato;
+}
