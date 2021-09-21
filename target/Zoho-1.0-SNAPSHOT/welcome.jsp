@@ -8,12 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Congrats</title>
-    <link rel="stylesheet" type="text/css" href="Styles/styles.css">
+    <title>Details</title>
 </head>
 <body>
     <h1 style="color:tomato;">
-    <%= "Welcome " + request.getAttribute("firstName") + " " + request.getAttribute("lastName") %>
+        <%= "Welcome " + request.getAttribute("firstName") + " " + request.getAttribute("lastName") %>
     </h1>
+    <form action="CheckUser" method="post">
+        Enter Mobile: <input type="number" name="userMobile"><br><br>
+        Enter Email:&nbsp; <input type="email" name="userEmail"><br><br>
+        <input type="submit" value="Check">
+    </form>
 </body>
 </html>

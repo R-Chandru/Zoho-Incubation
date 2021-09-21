@@ -6,14 +6,19 @@
     <link rel="stylesheet" type="text/css" href="Styles/styles.css">
 </head>
 <body>
-    <h1 style="color:tomato;">Welcome to Zoho</h1>
-    <h3>Enter Details</h3>
+    <h1 style="color:tomato;">Chandru's Zoho Incubation Tasks</h1>
 
-    <form action="details" class="adjust">
-        First name: <input type="text" name="firstName"><br><br>
-        Last name: <input type="text" name="lastName"><br><br>
-        <input type="submit" value="Submit">
+    <form action="Details.jsp" style="margin-top: 20px;">
+        <input type="submit" value="Simple Application with Servlet and JSP">
     </form>
-<br/>
+
+    <form action="Rest_Servlet" style="margin-top: 10px;">
+        <input type="submit" value="View REST API created with Servlet">
+    </form>
+
+    <form action="Get_RestApi" style="margin-top: 10px;">
+        <input class="btn" type="submit" value="Display REST API">
+    </form>
+    <br/>
 </body>
 </html>

@@ -3,4 +3,30 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <servlet>
+        <servlet-name>CheckUser</servlet-name>
+        <servlet-class>com.chandru.zoho.CheckUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckUser</servlet-name>
+        <url-pattern>/CheckUser</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Rest_Servlet</servlet-name>
+        <servlet-class>com.chandru.zoho.Rest_Servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Rest_Servlet</servlet-name>
+        <url-pattern>/Rest_Servlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Get_RestApi</servlet-name>
+        <servlet-class>com.chandru.zoho.Get_RestApi</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Get_RestApi</servlet-name>
+        <url-pattern>/Get_RestApi</url-pattern>
+    </servlet-mapping>
 </web-app>
