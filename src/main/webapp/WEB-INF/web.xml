@@ -18,7 +18,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Rest_Servlet</servlet-name>
-        <url-pattern>/Rest_Servlet</url-pattern>
+        <url-pattern>/Rest_Servlet/*</url-pattern>
     </servlet-mapping>
     
     <servlet>

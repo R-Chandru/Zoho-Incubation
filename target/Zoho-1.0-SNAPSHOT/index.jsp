@@ -12,12 +12,16 @@
         <input type="submit" value="Simple Application with Servlet and JSP">
     </form>
 
-    <form action="Rest_Servlet" style="margin-top: 10px;">
+    <form action="Rest_Servlet/" style="margin-top: 10px;">
         <input type="submit" value="View REST API created with Servlet">
     </form>
 
     <form action="Get_RestApi" style="margin-top: 10px;">
-        <input class="btn" type="submit" value="Display REST API">
+        <input type="submit" value="Display REST API">
+    </form>
+
+    <form action="ChatWindow.jsp" style="margin-top: 10px;">
+        <input type="submit" value="Offline Chat Application">
     </form>
     <br/>
 </body>

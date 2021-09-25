@@ -35,9 +35,7 @@ public class Get_RestApi extends HttpServlet {
             writer.write(object.getInt("Id") + "\t" + object.getString("firstName") + "\t\t" +
                     object.getString("lastName") + "\t\t" + object.getString("email") + "\n");
         }
-
         writer.close();
-
     }
 
     @Override
