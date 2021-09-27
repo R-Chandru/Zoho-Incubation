@@ -29,11 +29,22 @@ public class Get_RestApi extends HttpServlet {
         String JSON = getRESt();
         JSONArray list = new JSONArray(JSON);
 
+        /*
+        * private int Id;
+        private String userFirstName;
+        private String userLastName;
+        private String userNumber;
+        private String userEmail;
+        private String userType;
+        private String lastCall;
+        *
+        */
+
         writer.write("Id\tFirstName\tLastName\tEmail\n\n");
         for (int itr=0 ; itr<list.length() ; itr++) {
             JSONObject object = list.getJSONObject(itr);
-            writer.write(object.getInt("Id") + "\t" + object.getString("firstName") + "\t\t" +
-                    object.getString("lastName") + "\t\t" + object.getString("email") + "\n");
+            writer.write(object.getInt("Id") + "\t" + object.getString("userFirstName") + "\t\t" +
+                    object.getString("userLastName") + "\t\t" + object.getString("userEmail") + "\n");
         }
         writer.close();
     }
@@ -46,7 +57,7 @@ public class Get_RestApi extends HttpServlet {
     protected String getRESt() {
         StringBuffer jsonResponse = new StringBuffer(); //Raw String buffer where it gets the response from server
         try {
-            String url = "http://localhost:8080/Zoho_war_exploded/Rest_Servlet?";
+            String url = "http://localhost:8000/Zoho_war_exploded/Rest_Servlet/";
             URL urlObject = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) urlObject.openConnection();
 
@@ -57,7 +68,6 @@ public class Get_RestApi extends HttpServlet {
                 jsonResponse.append(inputLine);
             }
             reader.close();
-
         }
         catch (Exception e) {
             e.printStackTrace();

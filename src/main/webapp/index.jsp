@@ -13,14 +13,18 @@
     </form>
 
     <form action="Rest_Servlet/" style="margin-top: 10px;">
-        <input type="submit" value="View REST API created with Servlet">
+        <input type="submit" value="Contact API created with Servlet">
+    </form>
+
+    <form action="messages/" style="margin-top: 10px;">
+        <input type="submit" value="Message API">
     </form>
 
     <form action="Get_RestApi" style="margin-top: 10px;">
         <input type="submit" value="Display REST API">
     </form>
 
-    <form action="ChatWindow.jsp" style="margin-top: 10px;">
+    <form action="ChatLogin.jsp" style="margin-top: 10px;">
         <input type="submit" value="Offline Chat Application">
     </form>
     <br/>

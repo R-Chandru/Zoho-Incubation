@@ -13,26 +13,25 @@
     <title>JSP Page</title>
     <style media="screen" type="text/css">
         .chat {
-            width: 100%;
+            width: 50%;
             height: 200px;
             border: 1px solid silver;
-            overflow-y: scroll;
         }
-        #msg {width: 99%;}
-        h1 {text-align: center;}
+        #msg {width: 49%;}
+        #btn {margin-left: 25%;}
     </style>
 </head>
+</script>
 <script type="text/javascript">
-
     var wsUrl;
+    var userName = '<%=request.getAttribute("name")%>';
+
     if (window.location.protocol == 'http:') {
         wsUrl = 'ws://';
     } else {
         wsUrl = 'wss://';
     }
-    var ws = new WebSocket(wsUrl + window.location.host + "/zoho/chat");
-    console.log(ws)
-    ws.connect()
+    var ws = new WebSocket(wsUrl + window.location.host + "/Zoho_war_exploded/chat");
 
     ws.onmessage = function(event) {
         var mySpan = document.getElementById("chat");
@@ -42,24 +41,24 @@
     ws.onerror = function(event){
         console.log("Error ", event)
     }
+
     function sendMsg() {
         var msg = document.getElementById("msg").value;
-        console.log(msg)
         if(msg)
         {
-            ws.send(msg);
+            ws.send(userName + " : "+ msg);
         }
         document.getElementById("msg").value="";
     }
 </script>
 <body>
-<h1>Live Chat updates</h1>
+<h1>Chat</h1>
 
 <div>
-    <div id="chat" class="chat"></div>
+    <div id="chat" class="chat"></div><br>
     <div>
-        <input type="text" name="msg" id="msg" placeholder="Enter message here"/>
-        <button onclick="return sendMsg();">Enter</button>
+        <input type="text" name="msg" id="msg" placeholder="Enter message"/><br><br>
+        <button onclick="return sendMsg();" id="btn">Enter</button>
     </div>
 </div>
 </body>

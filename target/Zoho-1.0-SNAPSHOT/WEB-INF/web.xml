@@ -22,11 +22,29 @@
     </servlet-mapping>
     
     <servlet>
+        <servlet-name>Messages</servlet-name>
+        <servlet-class>com.chandru.zoho.Messages</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Messages</servlet-name>
+        <url-pattern>/messages/*</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>Get_RestApi</servlet-name>
         <servlet-class>com.chandru.zoho.Get_RestApi</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Get_RestApi</servlet-name>
         <url-pattern>/Get_RestApi</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ChatLogin</servlet-name>
+        <servlet-class>com.chandru.zoho.chat_application.ChatLogin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChatLogin</servlet-name>
+        <url-pattern>/ChatLogin</url-pattern>
     </servlet-mapping>
 </web-app>
