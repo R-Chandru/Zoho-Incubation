@@ -1,6 +1,6 @@
 package com.chandru.zoho.model;
 
-public class PrivateMessage {
+public class PrivateChat {
     int Id;
     String userName;
     String userNumber;
@@ -8,12 +8,13 @@ public class PrivateMessage {
     String userEmail;
     String userDescription;
     String userType;
-    String lastSeen;
     String lastMessage;
+    String messageTime;
+    String messageStatus;
 
-    public PrivateMessage(int id, String userName, String userNumber, String userProfilePic,
-                          String userEmail, String userDescription, String userType,
-                          String lastSeen, String lastMessage) {
+    public PrivateChat(int id, String userName, String userNumber, String userProfilePic,
+                       String userEmail, String userDescription, String userType,
+                       String messageTime, String lastMessage, String messageStatus) {
         Id = id;
         this.userName = userName;
         this.userNumber = userNumber;
@@ -21,9 +22,8 @@ public class PrivateMessage {
         this.userEmail = userEmail;
         this.userDescription = userDescription;
         this.userType = userType;
-        this.lastSeen = lastSeen;
+        this.messageTime = messageTime;
         this.lastMessage = lastMessage;
+        this.messageStatus = messageStatus;
     }
 }
-
-

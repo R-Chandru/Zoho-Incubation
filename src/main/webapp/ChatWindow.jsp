@@ -21,7 +21,6 @@
         #btn {margin-left: 25%;}
     </style>
 </head>
-</script>
 <script type="text/javascript">
     var wsUrl;
     var userName = '<%=request.getAttribute("name")%>';

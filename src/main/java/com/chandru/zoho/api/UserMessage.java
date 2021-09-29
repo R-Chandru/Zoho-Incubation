@@ -1,7 +1,7 @@
-package com.chandru.zoho;
+package com.chandru.zoho.api;
 
-import com.chandru.zoho.model.PrivateMessage;
-import com.chandru.zoho.model.User;
+import com.chandru.zoho.model.Message;
+import com.chandru.zoho.model.PrivateChat;
 import com.google.gson.Gson;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -18,8 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@WebServlet(name = "Messages", value = "/messages/*")
-public class Messages extends HttpServlet {
+@WebServlet(name = "UserMessage", value = "/chats/messages/*")
+public class UserMessage extends HttpServlet {
     private static Connection connection;
     private static Statement statement;
 
@@ -37,15 +37,21 @@ public class Messages extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<PrivateMessage> messageList = new ArrayList<>();
+        List<Message> messageList = new ArrayList<>();
         ResultSet set = null;
 
         String path = request.getPathInfo();
         String[] resource = path.split("/");
 
+        System.out.println(request.getAttribute("number"));
+
+        System.out.println("Came");
+
         if (resource.length > 1) {
             try {
-                set = statement.executeQuery("select * from messages where userNumber = " + resource[1] + ";");
+                String updateStatus = "update messages set messageStatus='read' where senderNumber = " + resource[1];
+                statement.executeUpdate(updateStatus);
+                set = statement.executeQuery("select * from messages where senderNumber = " + resource[1] + ";");
             }
             catch (Exception e) {
                 e.printStackTrace();
@@ -53,6 +59,8 @@ public class Messages extends HttpServlet {
         }
         else {
             try {
+                String updateStatus = "update messages set messageStatus='read'";
+                statement.executeUpdate(updateStatus);
                 set = statement.executeQuery("select * from messages");
             }
             catch (Exception e) {
@@ -62,10 +70,10 @@ public class Messages extends HttpServlet {
         try {
             while (set.next()) {
                 messageList.add(
-                        new PrivateMessage(set.getInt("Id"), set.getString("userName"), set.getString("userNumber"),
-                                set.getString("userProfilePic"), set.getString("userEmail"),
-                                set.getString("userDescription"), set.getString("userType"),
-                                set.getString("lastSeen"), set.getString("lastMessage"))
+                        new Message(set.getString("senderNumber"), set.getString("receiverNumber"),
+                                set.getString("message"), set.getString("messageTime"),
+                                set.getString("messageStatus"), set.getString("messageReadTime")
+                        )
                 );
             }
         }
@@ -86,7 +94,7 @@ public class Messages extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestBody = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-        insertContact(requestBody);
+        createMessage(requestBody);
 
         PrintWriter writer = response.getWriter();
         response.setContentType("application/json");
@@ -112,9 +120,9 @@ public class Messages extends HttpServlet {
         else {
             JSONObject object = new JSONObject();
             try {
-                String deleteContact = "delete from messages where userNumber = " + resource[1] +";";
+                String deleteContact = "delete from messages where senderNumber = " + resource[1] +";";
                 statement.executeUpdate(deleteContact);
-                insertContact(requestBody);
+                createMessage(requestBody);
                 writer.write(requestBody);
             }
             catch (Exception e) {
@@ -141,7 +149,7 @@ public class Messages extends HttpServlet {
         else {
             JSONObject object = new JSONObject();
             try {
-                String deleteContact = "delete from messages where userNumber = " + resource[1] +";";
+                String deleteContact = "delete from messages where senderNumber = " + resource[1] +";";
                 statement.executeUpdate(deleteContact);
                 object.put("message", "Deleted Successfully");
                 writer.write(object.toString());
@@ -153,21 +161,17 @@ public class Messages extends HttpServlet {
         }
     }
 
-    protected void insertContact(String requestBody) {
+    protected void createMessage(String requestBody) {
         JSONObject jsonObject = new JSONObject(requestBody);
-        String userName = jsonObject.getString("userName");
-        String userNumber = jsonObject.getString("userNumber");
-        String userProfilePic = jsonObject.getString("userProfilePic");
-        String userEmail = jsonObject.getString("userEmail");
-        String userDescription = jsonObject.getString("userDescription");
-        String userType = jsonObject.getString("userType");
-        String lastSeen = jsonObject.getString("lastSeen");
-        String lastMessage = jsonObject.getString("lastMessage");
+        String senderNumber = jsonObject.getString("senderNumber");
+        String receiverNumber = jsonObject.getString("receiverNumber");
+        String message = jsonObject.getString("message");
+        String messageTime = jsonObject.getString("messageTime");
+        String messageReadTime = jsonObject.getString("messageReadTime");
 
         try {
-            String insertContact = "insert into messages values (" + 0 + ", '" + userName + "', '" + userNumber
-                    + "', '" + userProfilePic + "', '" + userEmail + "', '" +userDescription + "', '"+ userType + "', '"
-                    + lastSeen + "', '" + lastMessage + "');";
+            String insertContact = "insert into messages values (" + 0 + ", '" + senderNumber + "', '" + receiverNumber
+                    + "', '" + message + "', '" + messageTime + "', 'sent', '" + "', '" + messageReadTime + "');";
             statement.executeUpdate(insertContact);
         }
         catch (Exception e) {

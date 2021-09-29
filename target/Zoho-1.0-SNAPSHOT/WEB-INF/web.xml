@@ -23,11 +23,20 @@
     
     <servlet>
         <servlet-name>Messages</servlet-name>
-        <servlet-class>com.chandru.zoho.Messages</servlet-class>
+        <servlet-class>com.chandru.zoho.api.Messages</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Messages</servlet-name>
-        <url-pattern>/messages/*</url-pattern>
+        <url-pattern>/chats/*</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>UserMessage</servlet-name>
+        <servlet-class>com.chandru.zoho.api.UserMessage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserMessage</servlet-name>
+        <url-pattern>/chats/messages/*</url-pattern>
     </servlet-mapping>
     
     <servlet>

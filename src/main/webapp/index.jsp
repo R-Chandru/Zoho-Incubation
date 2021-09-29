@@ -6,17 +6,21 @@
     <link rel="stylesheet" type="text/css" href="Styles/styles.css">
 </head>
 <body>
-    <h1 style="color:tomato;">Chandru's Zoho Incubation Tasks</h1>
+    <h1 style="color:tomato;">Zoho Incubation Tasks</h1>
 
     <form action="Details.jsp" style="margin-top: 20px;">
         <input type="submit" value="Simple Application with Servlet and JSP">
     </form>
 
     <form action="Rest_Servlet/" style="margin-top: 10px;">
-        <input type="submit" value="Contact API created with Servlet">
+        <input type="submit" value="Contact API">
     </form>
 
-    <form action="messages/" style="margin-top: 10px;">
+    <form action="chats/" style="margin-top: 10px;">
+        <input type="submit" value="Chats API">
+    </form>
+
+    <form action="chats/messages/" style="margin-top: 10px;">
         <input type="submit" value="Message API">
     </form>
 
@@ -25,8 +29,9 @@
     </form>
 
     <form action="ChatLogin.jsp" style="margin-top: 10px;">
-        <input type="submit" value="Offline Chat Application">
+        <input type="submit" value="Chat Application with Web sockets">
     </form>
+
     <br/>
 </body>
 </html>
