@@ -35,17 +35,56 @@ public class UserMessage extends HttpServlet {
         }
     }
 
+    //Denying the access for not logged in users - BROKEN ACCESS CONTROL
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+        String userNumber = req.getParameter("number") != null ? req.getParameter("number") : "";
+        String userPass = req.getParameter("pass") != null ? req.getParameter("pass") : "";
+        List<Message> messageList = new ArrayList<>();
+        ResultSet set = null;
+
+        if (userPass.equals("chandru")) {
+            try {
+                String updateStatus = "update messages set messageStatus='read' where senderNumber = " + userNumber;
+                statement.executeUpdate(updateStatus);
+                set = statement.executeQuery("select * from messages where senderNumber = " + userNumber + " or receiverNumber = " + userNumber);
+                while (set.next()) {
+                    messageList.add(
+                            new Message(set.getString("senderNumber"), set.getString("receiverNumber"),
+                                    set.getString("message"), set.getString("messageTime"),
+                                    set.getString("messageStatus"), set.getString("messageReadTime")
+                            )
+                    );
+                }
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            Gson gson = new Gson();
+            String JSON = gson.toJson(messageList);
+
+            PrintWriter writer = response.getWriter();
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            writer.write(JSON);
+            writer.close();
+        }
+        else {
+            PrintWriter writer = response.getWriter();
+            response.setContentType("text/html");
+            writer.write("You don't have the access");
+        }
+
+        System.out.println(userNumber);
+    }
+
+    /*@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Message> messageList = new ArrayList<>();
         ResultSet set = null;
 
         String path = request.getPathInfo();
         String[] resource = path.split("/");
-
-        System.out.println(request.getAttribute("number"));
-
-        System.out.println("Came");
 
         if (resource.length > 1) {
             try {
@@ -89,7 +128,7 @@ public class UserMessage extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         writer.write(JSON);
         writer.close();
-    }
+    }*/
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

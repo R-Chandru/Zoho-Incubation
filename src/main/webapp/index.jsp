@@ -9,11 +9,11 @@
     <h1 style="color:tomato;">Zoho Incubation Tasks</h1>
 
     <form action="Details.jsp" style="margin-top: 20px;">
-        <input type="submit" value="Simple Application with Servlet and JSP">
+        <input type="submit" value="Servlet and JSP">
     </form>
 
     <form action="Rest_Servlet/" style="margin-top: 10px;">
-        <input type="submit" value="Contact API">
+        <input type="submit" value="Contacts API">
     </form>
 
     <form action="chats/" style="margin-top: 10px;">
@@ -21,7 +21,7 @@
     </form>
 
     <form action="chats/messages/" style="margin-top: 10px;">
-        <input type="submit" value="Message API">
+        <input type="submit" value="Messages API">
     </form>
 
     <form action="Get_RestApi" style="margin-top: 10px;">
@@ -32,6 +32,9 @@
         <input type="submit" value="Chat Application with Web sockets">
     </form>
 
+    <form action="Login.jsp" style="margin-top: 10px;">
+        <input type="submit" value="Secure SignUp and SignIn">
+    </form>
     <br/>
 </body>
 </html>

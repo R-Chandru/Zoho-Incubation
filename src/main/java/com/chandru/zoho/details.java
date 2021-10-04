@@ -13,6 +13,12 @@ public class details extends HttpServlet {
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
 
+        //Prevents from running script functions.
+        /*if (firstName.contains("script"))
+            firstName=" ";
+        if (lastName.contains("script"))
+            lastName = " ";*/
+
         request.setAttribute("firstName", firstName);
         request.setAttribute("lastName", lastName);
 
